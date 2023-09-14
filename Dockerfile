@@ -16,8 +16,8 @@ RUN dnf -y install epel-release \
     && cleanup
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
-FROM base as xfce
 ### Install xfce UI
+FROM base as xfce
 RUN dnf --enablerepo=epel -y -x gnome-keyring --skip-broken groups install "Xfce" \
   && dnf -y groups install "Fonts" \
   && dnf erase -y *power* *screensaver* \
@@ -25,16 +25,16 @@ RUN dnf --enablerepo=epel -y -x gnome-keyring --skip-broken groups install "Xfce
   && rm /etc/xdg/autostart/xfce-polkit* \
   && cleanup
 
-FROM xfce as nomachine
 ### Install Nomachine
+FROM xfce as nomachine
 RUN dnf clean all && dnf update \
     && wget https://download.nomachine.com/download/8.8/Linux/nomachine_8.8.1_1_x86_64.rpm \
     && rpm -i nomachine_8.8.1_1_x86_64.rpm \
     && rm nomachine_8.8.1_1_x86_64.rpm \
     && cleanup
 
-FROM nomachine as pycharm
 # Goto https://www.nomachine.com/download/download&id=10 and change for the latest NOMACHINE_PACKAGE_NAME and MD5 shown in that link to get the latest version.
+FROM nomachine as pycharm
 ARG PYCHARM_VERSION
 
 RUN wget -c "https://download-cf.jetbrains.com/python/pycharm-community-${PYCHARM_VERSION}.tar.gz" -O - | tar -xz -C /opt/ \
