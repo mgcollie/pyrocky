@@ -35,9 +35,11 @@ Some novel use cases for these would be (but aren't limited to):
 git clone https://github.com/mgcollie/pyrocky.git
 cd pyrocky
 ```
-2. Make any edits you want to the .env file
+2. Make any edits you want/need to the .env file
 
+    *If you have problems connecting try changing the `NOMACHINE_PORT` variable to something else.*
 
+ 
 3. Run the container
 ```
 docker-compose up --build -d
