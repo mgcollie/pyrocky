@@ -9,12 +9,9 @@ RUN chmod 7777 /bin/cleanup
 ### Install some common tools
 RUN dnf -y install epel-release \
     && dnf -y update \
-    && dnf -y install terminator xauth dbus dbus-x11 vim wget which net-tools bzip2 findutils procps dbus-glib psmisc \
-    && dnf -y install mailcap \
-    && dnf -y install glibc-langpack-en glibc-locale-source glibc-all-langpacks \
-    && localedef -i en_US -f UTF-8 en_US.UTF-8 \
+    && dnf -y install mailcap sudo terminator xauth dbus dbus-x11 vim wget \
+    which net-tools bzip2 findutils procps dbus-glib psmisc \
     && cleanup
-ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
 ### Install xfce UI
 FROM base as xfce
