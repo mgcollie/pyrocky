@@ -9,7 +9,7 @@ RUN chmod 7777 /bin/cleanup
 ### Install some common tools
 RUN dnf -y install epel-release \
     && dnf -y update \
-    && dnf -y install mailcap sudo terminator xauth dbus dbus-x11 vim wget \
+    && dnf -y install mailcap sudo git terminator xauth dbus dbus-x11 vim wget \
     which net-tools bzip2 findutils procps dbus-glib psmisc \
     && cleanup
 
