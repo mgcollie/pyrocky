@@ -24,13 +24,15 @@ RUN dnf --enablerepo=epel -y -x gnome-keyring --skip-broken groups install "Xfce
 
 ### Install Nomachine
 FROM xfce as nomachine
-RUN dnf clean all && dnf update \
-    && wget https://download.nomachine.com/download/8.8/Linux/nomachine_8.8.1_1_x86_64.rpm \
-    && rpm -i nomachine_8.8.1_1_x86_64.rpm \
-    && rm nomachine_8.8.1_1_x86_64.rpm \
+ARG NOMACHINE_BUILD
+ARG NOMACHINE_PACKAGE_NAME
+
+RUN dnf clean all && dnf -y update --allowerasing \
+    && wget https://download.nomachine.com/download/${NOMACHINE_BUILD}/Linux/${NOMACHINE_PACKAGE_NAME} \
+    && rpm -i ${NOMACHINE_PACKAGE_NAME} \
+    && rm ${NOMACHINE_PACKAGE_NAME} \
     && cleanup
 
-# Goto https://www.nomachine.com/download/download&id=10 and change for the latest NOMACHINE_PACKAGE_NAME and MD5 shown in that link to get the latest version.
 FROM nomachine as pycharm
 ARG PYCHARM_VERSION
 
