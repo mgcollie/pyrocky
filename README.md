@@ -8,7 +8,7 @@
 This project shows a simple example of how you can run an entire Desktop environment inside  a Docker Container.
 It's using Rocky Linux 9.2 and comes with the following pre-installed:
 - Python 3.9.16
-- Firefox 102.15.Oesr
+- Firefox 102.15
 
 You choose your version of Pycharm and Nomachine.  The Dockerfile will download and install them for you.
 
